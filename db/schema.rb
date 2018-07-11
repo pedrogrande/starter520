@@ -10,10 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_28_230256) do
+ActiveRecord::Schema.define(version: 2018_07_11_091651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "canvas_item_types", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.text "question"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "position"
+  end
+
+  create_table "canvas_items", force: :cascade do |t|
+    t.bigint "canvas_item_type_id"
+    t.bigint "canvas_id"
+    t.bigint "user_id"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["canvas_id"], name: "index_canvas_items_on_canvas_id"
+    t.index ["canvas_item_type_id"], name: "index_canvas_items_on_canvas_item_type_id"
+    t.index ["user_id"], name: "index_canvas_items_on_user_id"
+  end
+
+  create_table "canvas_users", force: :cascade do |t|
+    t.bigint "canvas_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["canvas_id"], name: "index_canvas_users_on_canvas_id"
+    t.index ["user_id"], name: "index_canvas_users_on_user_id"
+  end
+
+  create_table "canvasses", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_canvasses_on_slug", unique: true
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -50,4 +89,9 @@ ActiveRecord::Schema.define(version: 2018_04_28_230256) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "canvas_items", "canvas_item_types"
+  add_foreign_key "canvas_items", "canvasses"
+  add_foreign_key "canvas_items", "users"
+  add_foreign_key "canvas_users", "canvasses"
+  add_foreign_key "canvas_users", "users"
 end

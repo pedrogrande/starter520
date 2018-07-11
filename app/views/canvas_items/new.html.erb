@@ -1,0 +1,51 @@
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1><small class="text-muted"><%= sprintf '%02d', (@step.position + 1) %>. </small> <%= @step.name.pluralize %></h1>
+        <h3><%= @step.question %></h3>
+        <hr>
+      </div>
+    </div>
+    <% if @canvas_step_items.any? %>
+    <div class="row">
+      <% @canvas_step_items.each do |step_item| %>
+        <div class="col-md-4">
+          <%= render partial: 'canvas_items/canvas_item', locals: { canvas_item: step_item, step: @step, canvas: @canvas } %>
+        </div>
+      <% end %>
+    </div>
+    <hr>
+    <% end %>
+    <%= simple_form_for(@canvas_item) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <div class="form-inputs">
+        <% if @step %>
+          <%= f.input :canvas_item_type_id, as: :hidden, input_html: { value: @step.id } %>
+        <% end %>
+        <% if @canvas %>
+          <%= f.input :canvas_id, as: :hidden, input_html: { value: @canvas.id } %>
+        <% end %>
+        <% if user_signed_in? %>
+          <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+        <% end %>
+
+
+        <%= f.input :name %>
+        <%= f.input :description %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit "Add " + @step.name, class: 'btn btn-primary' %>
+        <% if @step.position < CanvasItemType.all.count %>
+          <%= link_to "Next step", new_canvas_item_path(canvas: params[:canvas], step: params[:step].to_i + 1), class: 'btn btn-secondary' %>
+        <% else %>
+          <%= link_to "Next step", canvas_path(@canvas), class: 'btn btn-secondary' %>
+        <% end %>
+
+      </div>
+    <% end %>
+  </div>
+</div>

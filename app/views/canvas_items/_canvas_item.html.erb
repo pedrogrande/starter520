@@ -1,0 +1,8 @@
+<div class="card bg-light">
+  <div class="card-body">
+    <h5 class="card-title"><%= canvas_item.name %></h5>
+    <p class="card-text"><%= canvas_item.description %></p>
+    <%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_canvas_item_path(canvas_item, canvas: canvas.slug, step: step.position), class: 'btn btn-sm btn-info' %>
+    <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, canvas_item, method: :delete, class: 'btn btn-sm btn-danger' %>
+  </div>
+</div>

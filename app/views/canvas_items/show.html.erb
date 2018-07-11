@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Canvas item type:</strong>
+  <%= @canvas_item.canvas_item_type %>
+</p>
+
+<p>
+  <strong>Canvas:</strong>
+  <%= @canvas_item.canvas %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @canvas_item.user %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @canvas_item.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @canvas_item.description %>
+</p>
+
+<%= link_to 'Edit', edit_canvas_item_path(@canvas_item) %> |
+<%= link_to 'Back', canvas_items_path %>

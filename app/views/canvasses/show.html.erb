@@ -1,0 +1,86 @@
+<style media="screen">
+  .slim-border {
+    border: 1px solid #333;
+    min-height: 200px;
+  }
+</style>
+
+<h1><%= @canvas.name %></h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm slim-border">
+      <h4>Problems</h4>
+      <% canvas_item_type = CanvasItemType.find_by(position: 1) %>
+      <% @canvas.canvas_items.where(canvas_item_type_id: canvas_item_type.id).each do |canvas_item| %>
+        <%= render partial: 'canvas_items/canvas_item', locals: { canvas_item: canvas_item, step: canvas_item_type, canvas: @canvas } %>
+      <% end %>
+    </div>
+    <div class="col-sm ">
+      <div class="row">
+        <div class="col-12 slim-border">
+          <h4>Solutions</h4>
+          <% canvas_item_type = CanvasItemType.find_by(position: 3) %>
+          <% @canvas.canvas_items.where(canvas_item_type_id: canvas_item_type.id).each do |canvas_item| %>
+            <%= render partial: 'canvas_items/canvas_item', locals: { canvas_item: canvas_item, step: canvas_item_type, canvas: @canvas } %>
+          <% end %>
+        </div>
+        <div class="col-12 slim-border">
+          <h4>Key metrics</h4>
+          <% canvas_item_type = CanvasItemType.find_by(position: 8) %>
+          <% @canvas.canvas_items.where(canvas_item_type_id: canvas_item_type.id).each do |canvas_item| %>
+            <%= render partial: 'canvas_items/canvas_item', locals: { canvas_item: canvas_item, step: canvas_item_type, canvas: @canvas } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm slim-border">
+      <h4>Unique Value Propositions</h4>
+      <% canvas_item_type = CanvasItemType.find_by(position: 4) %>
+      <% @canvas.canvas_items.where(canvas_item_type_id: canvas_item_type.id).each do |canvas_item| %>
+        <%= render partial: 'canvas_items/canvas_item', locals: { canvas_item: canvas_item, step: canvas_item_type, canvas: @canvas } %>
+      <% end %>
+    </div>
+    <div class="col-sm">
+      <div class="row">
+        <div class="col-12 slim-border">
+          <h4>Unfair Advantages</h4>
+          <% canvas_item_type = CanvasItemType.find_by(position: 5) %>
+          <% @canvas.canvas_items.where(canvas_item_type_id: canvas_item_type.id).each do |canvas_item| %>
+            <%= render partial: 'canvas_items/canvas_item', locals: { canvas_item: canvas_item, step: canvas_item_type, canvas: @canvas } %>
+          <% end %>
+        </div>
+        <div class="col-12 slim-border">
+          <h4>Sales Channels</h4>
+          <% canvas_item_type = CanvasItemType.find_by(position: 7) %>
+          <% @canvas.canvas_items.where(canvas_item_type_id: canvas_item_type.id).each do |canvas_item| %>
+            <%= render partial: 'canvas_items/canvas_item', locals: { canvas_item: canvas_item, step: canvas_item_type, canvas: @canvas } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm slim-border">
+      <h4>Customer Segments</h4>
+      <% canvas_item_type = CanvasItemType.find_by(position: 2) %>
+      <% @canvas.canvas_items.where(canvas_item_type_id: canvas_item_type.id).each do |canvas_item| %>
+        <%= render partial: 'canvas_items/canvas_item', locals: { canvas_item: canvas_item, step: canvas_item_type, canvas: @canvas } %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm slim-border">
+      <h4>Cost structure</h4>
+      <% canvas_item_type = CanvasItemType.find_by(position: 9) %>
+      <% @canvas.canvas_items.where(canvas_item_type_id: canvas_item_type.id).each do |canvas_item| %>
+        <%= render partial: 'canvas_items/canvas_item', locals: { canvas_item: canvas_item, step: canvas_item_type, canvas: @canvas } %>
+      <% end %>
+    </div>
+    <div class="col-sm slim-border">
+      <h4>Revenue streams</h4>
+      <% canvas_item_type = CanvasItemType.find_by(position: 6) %>
+      <% @canvas.canvas_items.where(canvas_item_type_id: canvas_item_type.id).each do |canvas_item| %>
+        <%= render partial: 'canvas_items/canvas_item', locals: { canvas_item: canvas_item, step: canvas_item_type, canvas: @canvas } %>
+      <% end %>
+    </div>
+  </div>
+</div>

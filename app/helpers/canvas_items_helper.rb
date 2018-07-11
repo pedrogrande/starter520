@@ -1,0 +1,2 @@
+module CanvasItemsHelper
+end

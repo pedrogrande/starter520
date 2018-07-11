@@ -1,24 +1,13 @@
-# README
+# notes
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Idea
+2. Problem
+3. Problem validation
+4. Solution design
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+rails g scaffold Canvas --force-plural name slug:uniq
+rails g model CanvasUser canvas:belongs_to user:belongs_to
+rails g scaffold CanvasItemType name description:text question:text
+rails g scaffold CanvasItem canvas_item_type:belongs_to canvas:belongs_to user:belongs_to name description:text

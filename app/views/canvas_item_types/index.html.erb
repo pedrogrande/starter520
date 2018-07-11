@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Canvas Item Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Question</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @canvas_item_types.each do |canvas_item_type| %>
+      <tr>
+        <td><%= canvas_item_type.name %></td>
+        <td><%= canvas_item_type.description %></td>
+        <td><%= canvas_item_type.question %></td>
+        <td><%= link_to 'Show', canvas_item_type %></td>
+        <td><%= link_to 'Edit', edit_canvas_item_type_path(canvas_item_type) %></td>
+        <td><%= link_to 'Destroy', canvas_item_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Canvas Item Type', new_canvas_item_type_path %>

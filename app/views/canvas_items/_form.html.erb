@@ -1,0 +1,17 @@
+
+<%= simple_form_for(@canvas_item) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :canvas_item_type %>
+    <%= f.association :canvas %>
+    <%= f.association :user %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

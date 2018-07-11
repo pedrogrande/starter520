@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :canvas_items
+  resources :canvas_item_types
+  resources :canvasses
   get 'contact', to: 'pages#contact'
   get 'about', to: 'pages#about'
   get 'privacy', to: 'pages#privacy'

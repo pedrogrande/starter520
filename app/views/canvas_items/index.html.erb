@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Canvas Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Canvas item type</th>
+      <th>Canvas</th>
+      <th>User</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @canvas_items.each do |canvas_item| %>
+      <tr>
+        <td><%= canvas_item.canvas_item_type %></td>
+        <td><%= canvas_item.canvas %></td>
+        <td><%= canvas_item.user %></td>
+        <td><%= canvas_item.name %></td>
+        <td><%= canvas_item.description %></td>
+        <td><%= link_to 'Show', canvas_item %></td>
+        <td><%= link_to 'Edit', edit_canvas_item_path(canvas_item) %></td>
+        <td><%= link_to 'Destroy', canvas_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Canvas Item', new_canvas_item_path %>
