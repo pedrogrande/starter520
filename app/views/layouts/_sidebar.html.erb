@@ -1,7 +1,7 @@
 <h3>Progress</h3>
 <ul class="nav flex-column nav-pills" aria-orientation="vertical">
   <li class="nav-item">
-    <% if params[:canvas] and @canvas %>
+    <% if @canvas and !@canvas.new_record? %>
       <a class="nav-link" href="<%= edit_canvas_path(@canvas.id, canvas: @canvas.slug) %>" role="tab" aria-controls="home" aria-selected="true">01. <%= @canvas.name %> <span class="pull-right"><i class="fa fa-check-circle text-success"></i> </span> </a>
     <% else %>
       <a class="nav-link <%= 'active' if params[:canvas] == '' %>" href="/" role="tab" aria-controls="home" aria-selected="true">01. Name</a>
@@ -11,7 +11,7 @@
   <% @canvas_item_types.each do |type| %>
     <% type_count = type.canvas_items.where(canvas_id: @canvas.id).count %>
     <li class="nav-item">
-      <% if params[:canvas] %>
+      <% if @canvas %>
         <a class="nav-link <%= 'active' if params[:step] == type.position.to_s %>" href="<%= new_canvas_item_path(canvas: @canvas.slug, step: type.position) %>" role="tab" aria-controls="profile" aria-selected="false">
           <%= sprintf '%02d', (type.position + 1) %>. <%= type.name.pluralize %>
           <% if type_count > 0 %>
@@ -25,7 +25,7 @@
     </li>
   <% end %>
   <hr>
-  <% if params[:canvas] %>
+  <% if @canvas and !@canvas.new_record? %>
     <li class="nav-item">
       <a class="nav-link <%= 'active' if current_page?(canvas_path(@canvas)) %>" href="<%= canvas_path(@canvas) %>" role="tab" aria-controls="View canvas" aria-selected="false"><i class="fa fa-eye fa-fw"></i> View Canvas</a>
     </li>
